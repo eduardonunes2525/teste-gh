@@ -1,11 +1,16 @@
 <template>
-  <q-page class="flex flex-center">
-    <img alt="Quasar logo" src="~assets/quasar-logo-full.svg">
-  </q-page>
+    <div>
+        <kr-map />
+    </div>
 </template>
 
 <script>
+import KrMap from '../components/KrMap.vue'
+
 export default {
-  name: 'PageIndex'
+  name: 'PageIndex',
+  components: {
+    'kr-map': KrMap
+  }
 }
 </script>
