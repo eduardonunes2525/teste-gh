@@ -1,16 +1,12 @@
 <template>
     <div>
-        <kr-map />
+        Index
     </div>
 </template>
 
 <script>
-import KrMap from '../components/KrMap.vue'
-
 export default {
   name: 'PageIndex',
-  components: {
-    'kr-map': KrMap
-  }
+  components: {}
 }
 </script>
