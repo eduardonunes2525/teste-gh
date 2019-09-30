@@ -1,7 +1,12 @@
 <template>
   <div>
-    <kr-map :locations="locations" :midpoint="midpoint" :polyline="polyline" />
-    <kr-table :table_data="table_data" />
+    <q-page padding class="flex">
+      <mp-control />
+      <q-card style="flex:1">
+        <kr-map :locations_data="locations_data" />
+      </q-card>
+    </q-page>
+    <kr-table v-if="false" />
   </div>
 </template>
 
@@ -9,21 +14,24 @@
 import axios from 'axios'
 import KrMap from '../components/KrMap.vue'
 import KrTable from '../components/KrTable.vue'
+import MapControlRange from '../components/MapControlRange.vue'
 
 export default {
   name: 'PageIndex',
   components: {
     'kr-map': KrMap,
-    'kr-table': KrTable
+    'kr-table': KrTable,
+    'mp-control': MapControlRange
   },
   data () {
     return {
-      table_data: [],
-      locations: [],
-      midpoint: [0, 0],
-      polyline: {
+      locations_data: {
         latlngs: [],
-        color: 'green'
+        color: 'orange'
+      },
+      speed: {
+        average: 0,
+        max: 0
       }
     }
   },
@@ -32,25 +40,20 @@ export default {
     axios
       .get('http://localhost:3000/logs')
       .then((response) => {
-        // TODO IN API self.polyline.latlngs = response['locations']
         let resp = {}
         let MAKE_IN_API = JSON.parse(JSON.stringify(response.data))
 
+        // TODO IN API self.polyline.latlngs = response['locations']
         resp['locations'] = MAKE_IN_API.map(location => [
           parseFloat(location['latitude']),
           parseFloat(location['longitude'])
         ])
 
-        let first = resp['locations'][0]
-        let last = resp['locations'][resp['locations'].length - 1]
-
-        self.midpoint = [(first[0] + last[0]) / 2, (first[1] + last[1]) / 2]
-        self.polyline.latlngs = resp['locations']
-        self.table_data = MAKE_IN_API
+        self.locations_data.latlngs = resp['locations']
       })
       .catch(function (/* error */) {})
       .then(function () {
-        self.loading = false
+        // self.loading = false
       })
   }
 }

@@ -1,5 +1,4 @@
 <template>
-  <div>
     <q-table
         :grid="$q.screen.xs"
         title="Relatório"
@@ -19,14 +18,16 @@
         </q-th>
         </template>
     </q-table>
-  </div>
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'KrTable',
   data () {
     return {
+      table_data: [],
       columns: [
         { name: 'time', align: 'left', label: 'Dia / Hora', field: 'time', sortable: true },
         { name: 'speed', align: 'left', label: 'Velocidade', field: 'speed', sortable: true },
@@ -38,8 +39,18 @@ export default {
       ]
     }
   },
-  props: {
-    table_data: Array
+  mounted () {
+    var self = this
+    axios
+      .get('http://localhost:3000/logs')
+      .then((response) => {
+        // TODO IN API location/relatory/csv = response['locations']
+        self.table_data = JSON.parse(JSON.stringify(response.data))
+      })
+      .catch((/* error */) => {})
+      .then(() => {
+        // self.loading = false
+      })
   }
 }
 </script>
