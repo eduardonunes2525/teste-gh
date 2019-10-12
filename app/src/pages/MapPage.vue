@@ -1,13 +1,24 @@
 <template>
-  <div>
-    <q-page padding class="flex">
-      <mp-control />
-      <q-card style="flex:1">
-        <kr-map :locations_data="locations_data" />
+  <q-page>
+    <section class="Kr-map">
+      <kr-map :locations_data="locations_data" />
+    </section>
+    <mp-control />
+
+    <q-btn round color="primary" icon="settings" @click="icon = true" />
+    <q-dialog v-model="icon">
+      <q-card>
+        <q-card-section class="row items-center">
+          <div class="text-h6">Settings</div>
+          <q-space />
+          <q-btn icon="close" flat round dense v-close-popup />
+        </q-card-section>
+
+        <q-color v-model="locations_data.color" no-header no-footer class="my-picker" />
       </q-card>
-    </q-page>
-    <kr-table v-if="false" />
-  </div>
+    </q-dialog>
+    <kr-table />
+  </q-page>
 </template>
 
 <script>
@@ -32,7 +43,11 @@ export default {
       speed: {
         average: 0,
         max: 0
-      }
+      },
+      icon: false,
+      bar: false,
+      bar2: false,
+      toolbar: false
     }
   },
   mounted () {
@@ -58,3 +73,11 @@ export default {
   }
 }
 </script>
+
+<style lang="sass" scoped>
+.my-picker
+  min-width: 40vh
+
+.Kr-map
+  height: 50vh
+</style>

@@ -1,37 +1,43 @@
 <template>
-  <div class="q-pa-md" style="max-width: 300px">
-    <q-input filled v-model="initial_date">
-      <template v-slot:prepend>
-        <q-icon name="event" class="cursor-pointer">
-          <q-popup-proxy transition-show="scale" transition-hide="scale">
-            <q-date v-model="initial_date" mask="DD/MM/YYYY" dark :locale="myLocale" v-on:click="checkLastDate"/>
-          </q-popup-proxy>
-        </q-icon>
-      </template>
-      <!-- <template v-slot:append>
-        <q-icon name="access_time" class="cursor-pointer">
-          <q-popup-proxy transition-show="scale" transition-hide="scale">
-            <q-time v-model="initial_date" mask="DD/MM/YYYY HH:mm:ss" format24h dark/>
-          </q-popup-proxy>
-        </q-icon>
-      </template> -->
-    </q-input>
-    <q-input filled v-model="last_date">
-      <template v-slot:prepend>
-        <q-icon name="event" class="cursor-pointer">
-          <q-popup-proxy transition-show="scale" transition-hide="scale">
-            <q-date v-model="last_date" mask="DD/MM/YYYY" dark :options="optionsFn" :locale="myLocale"/>
-          </q-popup-proxy>
-        </q-icon>
-      </template>
-      <!-- <template v-slot:append>
-        <q-icon name="access_time" class="cursor-pointer">
-          <q-popup-proxy transition-show="scale" transition-hide="scale">
-            <q-time v-model="last_date" mask="DD/MM/YYYY HH:mm" format24h dark />
-          </q-popup-proxy>
-        </q-icon>
-      </template> -->
-    </q-input>
+  <div class="q-pa-md">
+     <div class="row">
+      <div class="col Initial-date-picker">
+        <q-input filled v-model="initial_date">
+          <template v-slot:prepend>
+            <q-icon name="event" class="cursor-pointer">
+              <q-popup-proxy transition-show="scale" transition-hide="scale">
+                <q-date v-model="initial_date" mask="DD/MM/YYYY" :locale="myLocale" v-on:click="checkLastDate"/>
+              </q-popup-proxy>
+            </q-icon>
+          </template>
+          <!-- <template v-slot:append>
+            <q-icon name="access_time" class="cursor-pointer">
+              <q-popup-proxy transition-show="scale" transition-hide="scale">
+                <q-time v-model="initial_date" mask="DD/MM/YYYY HH:mm:ss" format24h dark/>
+              </q-popup-proxy>
+            </q-icon>
+          </template> -->
+        </q-input>
+      </div>
+      <div class="col">
+        <q-input filled v-model="last_date">
+          <template v-slot:prepend>
+            <q-icon name="event" class="cursor-pointer">
+              <q-popup-proxy transition-show="scale" transition-hide="scale">
+                <q-date v-model="last_date" mask="DD/MM/YYYY" :options="optionsFn" :locale="myLocale"/>
+              </q-popup-proxy>
+            </q-icon>
+          </template>
+          <!-- <template v-slot:append>
+            <q-icon name="access_time" class="cursor-pointer">
+              <q-popup-proxy transition-show="scale" transition-hide="scale">
+                <q-time v-model="last_date" mask="DD/MM/YYYY HH:mm" format24h dark />
+              </q-popup-proxy>
+            </q-icon>
+          </template> -->
+        </q-input>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -77,5 +83,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="sass" scoped>
+.Initial-date-picker
+  margin-right: 10px
 </style>
