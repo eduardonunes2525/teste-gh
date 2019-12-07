@@ -62,7 +62,7 @@ export default {
       messages: [0, 0],
       location: [],
       // Melhorar essa comunicação de websocket
-      socket: new WebSocket('ws://localhost:8000/real_time_location')
+      socket: new WebSocket('ws://167.71.94.162:8000/real_time_location')
     }
   },
   computed: {
@@ -102,7 +102,7 @@ export default {
       markersBounds.push(this.user.position)
 
       this.bounds = latLngBounds(markersBounds)
-      console.log('AQUI', event.data)
+      // console.log('AQUI', event.data)
     }
   }
 }
