@@ -3,8 +3,8 @@
     <section class="Kr-map">
       <kr-map :locations_data="locations_data" />
     </section>
+    <!--
     <mp-control />
-
     <q-btn round color="primary" icon="settings" @click="icon = true" />
     <q-dialog v-model="icon">
       <q-card>
@@ -18,21 +18,26 @@
       </q-card>
     </q-dialog>
     <kr-table />
+    <mp-real-time />
+    -->
   </q-page>
 </template>
 
 <script>
 import axios from 'axios'
-import KrMap from '../components/KrMap.vue'
-import KrTable from '../components/KrTable.vue'
-import MapControlRange from '../components/MapControlRange.vue'
+import KrMap from '../components/KrRealTimeLocationMap.vue'
+// import KrMap from '../components/KrMap.vue'
+// import KrTable from '../components/KrTable.vue'
+// import MapRealTime from '../components/MapRealTimeLocation.vue'
+// import MapControlRange from '../components/MapControlRange.vue'
 
 export default {
   name: 'PageIndex',
   components: {
-    'kr-map': KrMap,
-    'kr-table': KrTable,
-    'mp-control': MapControlRange
+    'kr-map': KrMap
+    // 'kr-table': KrTable,
+    // 'mp-real-time': MapRealTime,
+    // 'mp-control': MapControlRange
   },
   data () {
     return {
@@ -79,5 +84,5 @@ export default {
   min-width: 40vh
 
 .Kr-map
-  height: 50vh
+  height: 100vh
 </style>

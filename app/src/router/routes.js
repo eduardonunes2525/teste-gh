@@ -3,7 +3,21 @@ const routes = [
     path: '/',
     component: () => import('layouts/Base.vue'),
     children: [
+      { path: '', component: () => import('pages/Index.vue') }
+    ]
+  },
+  {
+    path: '/map',
+    component: () => import('layouts/Base.vue'),
+    children: [
       { path: '', component: () => import('pages/MapPage.vue') }
+    ]
+  },
+  {
+    path: '/real-time-map',
+    component: () => import('layouts/Base.vue'),
+    children: [
+      { path: '', component: () => import('pages/RealTimeMapPage.vue') }
     ]
   }
 ]

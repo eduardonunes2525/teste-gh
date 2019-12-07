@@ -5,10 +5,8 @@
     :center="this.locations_data['latlngs'][0]"
     :options="{zoomControl: false}"
   >
-    <!--
     <l-marker :lat-lng="car"></l-marker>
     <l-marker :lat-lng="user"></l-marker>
-    -->
     <l-polyline :lat-lngs="locations_data.latlngs" :color="locations_data.color" />
     <l-tile-layer :url="url"></l-tile-layer>
   </l-map>
@@ -17,28 +15,28 @@
 <script>
 import {
   LMap,
-  // LMarker,
+  LMarker,
   LPolyline,
   LTileLayer
 } from 'vue2-leaflet'
-// import L from 'leaflet'
+import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 
 export default {
   name: 'KrMap',
   components: {
     LMap,
-    // LMarker,
+    LMarker,
     LPolyline,
     LTileLayer
   },
   data () {
     return {
       zoom: 11,
-      url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png' // TODO Deixar isso local
+      url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png', // TODO Deixar isso local
       // attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-      // user: L.latLng(47.334852, -1.509485),
-      // car: L.latLng(47.41320, -1.219482),
+      user: L.latLng(47.334852, -1.509485),
+      car: L.latLng(47.41320, -1.219482)
     }
   },
   props: {
