@@ -1,7 +1,7 @@
 FROM node:12.10-alpine as develop-stage
 RUN mkdir app
 WORKDIR /app
-COPY ./app/package*.json /app
+COPY ./app/package.json /app
 RUN yarn global add @quasar/cli
 COPY ./app .
 
